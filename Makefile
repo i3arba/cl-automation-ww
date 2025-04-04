@@ -72,6 +72,3 @@ endif
 ifeq ($(findstring --network sepolia,$(ARGS)),--network sepolia)
 	NETWORK_ARGS := --rpc-url ${SEPOLIA_RPC_URL} --account live_burner --broadcast --verify --etherscan-api-key ${ETHERSCAN_API_KEY} -vvvvv
 endif
-
-# Verify Contracts
-verify:
