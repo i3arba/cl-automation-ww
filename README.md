@@ -23,17 +23,22 @@
 
 <br>
 
-We believe that education and security are Web3's main challenges, and we decided to tackle them. To do so, we offer hands-on Institutional Training and on-demand courses in Portuguese. These courses approach the learning process with a security-first mindset, ensuring students receive the market best practices to become solid professionals to tackle all challenges the ecosystem may face.
+We believe that education and security are Web3's main challenges, and we decided to tackle them. To do so, we offer hands-on Institutional Training and on-demand courses in Portuguese. These courses approach the learning process with a security-first mindset, ensuring students receive the market's best practices to become solid professionals to tackle all challenges the ecosystem may face.
 
 This repository is part of this goal.
 
 </br>
 
 ## About this Project
-This an example implementation of Chainlink Automation solution. It aims to provide insights for builders who want to learn how to use Automation in their own decentralized applications.
+This is an example implementation of the Chainlink Automation solution. It aims to provide insights for builders who want to learn how to use Automation in their decentralized applications.
 
-> ⚠ The contracts inside of this repo weren't audited or went through a deep analysis and could contain vulnerabilities.
-> ⚠ DO NOT USE IN PRODUCTION!
+<div align="center">
+
+⚠ The contracts inside of this repo weren't audited or went through a deep analysis and could contain vulnerabilities.
+<br/>
+⚠ DO NOT USE IN PRODUCTION!
+
+</div>
 
 ## How to Install
 
@@ -46,10 +51,11 @@ cd cl-automation
 
 <br>
 
-**2. Environmental Variables
-Ideally, create and `.env.enc` file using [Chainlink Encryption](https://www.npmjs.com/package/@chainlink/env-enc) or update the `.env.example` to `.env` and add environmental variables.**
+**2. Environmental Variables**
+<br>
+Ideally, create and `.env.enc` file using [Chainlink Encryption](https://www.npmjs.com/package/@chainlink/env-enc) or update the `.env.example` to `.env` and add environmental variables.
 
-> NEVER ADD A PRIVATE KEY IN PLAIN TEXT IN YOUR `.ENV` FILE
+<div align="center"> ⚠️ NEVER ADD A PRIVATE KEY IN PLAIN TEXT IN YOUR `.ENV` FILE ⚠️ </div>
 
 <br>
 
@@ -82,12 +88,12 @@ forge build
 <br>
 
 **5. Update the Makefile environment variables**
+<br>
 Makefile may not contain all the information you may need to run tests or deploys. Check and update it accordingly.
 
 <br>
 
-**6. From now on, you can build your project**
-> Ad Astra et Ultra 🚀
+**6. Ad Astra et Ultra 🚀**
 
 </br>
 </br>
