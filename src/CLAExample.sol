@@ -10,7 +10,7 @@ import { Ownable } from "@openzeppelin/contracts/access/Ownable.sol";
 
 /**
     *@title Chainlink Automation contract example
-    *@notice A balance monitor contract leveraging Chainlink Automation to monitor and fund a eth address
+    *@notice A balance monitor contract leveraging Chainlink Automation to monitor and fund an Ethereum address
 */
 contract CLAExample is AutomationCompatibleInterface, Ownable {
 
@@ -47,9 +47,9 @@ contract CLAExample is AutomationCompatibleInterface, Ownable {
     /*///////////////////////////////////
                 Errors
     ///////////////////////////////////*/
-    ///@notice error emitted when a invalid address is used
+    ///@notice error emitted when an invalid address is used
     error CLAExample_InvalidAddress(address newAddress);
-    ///@notice error emitted when a not allowed address tries to perform upkeep
+    ///@notice error emitted when an unallowed address tries to perform upkeep
     error CLAExample_OnlyForwarder();
     ///@notice error emitted when the funding process fails
     error CLAExample_TopUpFailed(bytes data);
@@ -71,15 +71,15 @@ contract CLAExample is AutomationCompatibleInterface, Ownable {
     /*///////////////////////////////////
                 constructor
     ///////////////////////////////////*/
-    constructor(address _owner) Ownable(_owner){
-
+    constructor(address _target, address _owner) Ownable(_owner){
+        s_fundingTarget = _target;
     }
 
     /*///////////////////////////////////
             Receive&Fallback
     ///////////////////////////////////*/
     /**
-     * @notice Function to Receive funds
+     * @notice Function to receive funds
      */
     receive() external payable {
         emit CLAExample_FundsAdded(msg.value, address(this).balance, msg.sender);
@@ -89,9 +89,9 @@ contract CLAExample is AutomationCompatibleInterface, Ownable {
                 external
     ///////////////////////////////////*/
     /**
-     * @notice Get list of addresses that are underfunded and return payload compatible with Chainlink Automation Network
+     * @notice Get a list of addresses that are underfunded and return a payload compatible with the Chainlink Automation Network
      * @return upkeepNeeded_ signals if upkeep is needed
-     * @return performData_ is an abi encoded list of addresses that need funds
+     * @return performData_ is an ABI-encoded list of addresses that need funds
      */
     function checkUpkeep(bytes calldata) external view override returns (bool upkeepNeeded_, bytes memory performData_){
         if(s_fundingTarget.balance < MIN_BALANCE){
@@ -137,7 +137,7 @@ contract CLAExample is AutomationCompatibleInterface, Ownable {
     }
 
     /**
-        *@notice set the target to be funded
+        *@notice Set the target to be funded
         *@param _fundingTarget the target address
     */
     function setFundingTarget(address _fundingTarget) external onlyOwner{
