@@ -16,9 +16,9 @@
 </br>
 
 <div align="center">
-<h1> 
+<h3> 
   We turn innovation into reality through education and security, one block at a time.
-</h1>
+</h3>
 </div>
 
 <br>
@@ -28,15 +28,15 @@ We believe that education and security are Web3's main challenges, and we decide
 This repository is part of this goal.
 
 </br>
+<div align="center">
 
 ## About this Project
 This is an example implementation of the Chainlink Automation solution. It aims to provide insights for builders who want to learn how to use Automation in their decentralized applications.
 
-<div align="center">
 
-⚠ The contracts inside of this repo weren't audited or went through a deep analysis and could contain vulnerabilities.
+⚠️ The contracts inside of this repo weren't audited or went through a deep analysis and could contain vulnerabilities. ⚠️
 <br/>
-⚠ DO NOT USE IN PRODUCTION!
+🚨 DO NOT USE IN PRODUCTION! 🚨
 
 </div>
 
