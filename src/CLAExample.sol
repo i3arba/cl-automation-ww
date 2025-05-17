@@ -22,8 +22,8 @@ contract CLAExample is AutomationCompatibleInterface, Ownable {
                 variables
     ///////////////////////////////////*/
     ///@notice magic number removal
-    uint256 constant MIN_BALANCE = 1*10**16;
-    uint256 constant AMOUNT_TO_TRANSFER = 1*10**17;
+    uint56 constant MIN_BALANCE = 1*10**16;
+    uint64 constant AMOUNT_TO_TRANSFER = 1*10**17;
 
     ///@notice storage variable to store the Chainlink's forwarder address
     address internal s_forwarderAddress;
@@ -42,7 +42,7 @@ contract CLAExample is AutomationCompatibleInterface, Ownable {
     ///@notice event emitted when contract funds are withdrawn
     event CLAExample_FundsWithdrawn(uint256 amount, address receiver);
     ///@notice event emitted when the target is funded
-    event CLAExample_TopUpSucceeded();
+    event CLAExample_TopUpSucceeded(uint256 valueTransferred, uint256 contractBalance, uint256 targetBalance);
 
     /*///////////////////////////////////
                 Errors
@@ -93,7 +93,7 @@ contract CLAExample is AutomationCompatibleInterface, Ownable {
      * @return upkeepNeeded_ signals if upkeep is needed
      * @return performData_ is an ABI-encoded list of addresses that need funds
      */
-    function checkUpkeep(bytes calldata) external view override returns (bool upkeepNeeded_, bytes memory performData_){
+    function checkUpkeep(bytes calldata) external view override onlyForwarder returns(bool upkeepNeeded_, bytes memory performData_){
         if(s_fundingTarget.balance < MIN_BALANCE){
             upkeepNeeded_ = true;
             performData_ = abi.encode(s_fundingTarget);
@@ -162,7 +162,7 @@ contract CLAExample is AutomationCompatibleInterface, Ownable {
         (bool success, bytes memory data) = s_fundingTarget.call{value: AMOUNT_TO_TRANSFER}("");
         if(!success) revert CLAExample_TopUpFailed(data);
 
-        emit CLAExample_TopUpSucceeded();
+        emit CLAExample_TopUpSucceeded(AMOUNT_TO_TRANSFER, address(this).balance, s_fundingTarget.balance);
     }
 
     /*///////////////////////////////////

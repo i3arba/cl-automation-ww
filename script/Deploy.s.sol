@@ -4,9 +4,6 @@ pragma solidity 0.8.26;
 ///@notice Foundry Stuff
 import { Script, console } from "forge-std/Script.sol";
 
-///@notice Scripts Helpers
-import { HelperConfig } from "script/helpers/HelperConfig.s.sol";
-
 ///@notice Contracts to be deployed
 import { CLAExample } from "src/CLAExample.sol";
 
@@ -22,14 +19,14 @@ contract DeployScript is Script {
         *@notice By doing that, you will be changing the function signature.
         *@notice So, you will need to update the signature to call on the CLI
     */
-    function run() external returns(HelperConfig helperConfig_, CLAExample cla_){        
-        helperConfig_ = new HelperConfig();
-        HelperConfig.NetworkConfig memory config = helperConfig_.getConfig();
+    function run() external returns(CLAExample cla_){
+        address owner = address(0);
+        address target = address(0);
 
         ///@notice foundry tool to deploy the contract
         vm.startBroadcast();
         
-        cla_ = new CLAExample(config.admin);
+        cla_ = new CLAExample(target, owner);
 
         vm.stopBroadcast();
 
