@@ -9,8 +9,11 @@ import { AutomationCompatibleInterface } from "@chainlink/contracts/src/v0.8/aut
 import { Ownable } from "@openzeppelin/contracts/access/Ownable.sol";
 
 /**
-    *@title Chainlink Automation contract example
-    *@notice A balance monitor contract leveraging Chainlink Automation to monitor and fund an Ethereum address
+    *@title Chainlink Automation Example
+    *@author i3arba - 77 Innovation Labs
+    *@notice This is an example of Chainlink Automation implementation
+             and have intentional points of improvement for students to correct
+    *@dev do not use this is production. It's not audited and can have bugs.
 */
 contract CLAExample is AutomationCompatibleInterface, Ownable {
 
@@ -93,7 +96,7 @@ contract CLAExample is AutomationCompatibleInterface, Ownable {
      * @return upkeepNeeded_ signals if upkeep is needed
      * @return performData_ is an ABI-encoded list of addresses that need funds
      */
-    function checkUpkeep(bytes calldata) external view override onlyForwarder returns(bool upkeepNeeded_, bytes memory performData_){
+    function checkUpkeep(bytes calldata) external view override returns(bool upkeepNeeded_, bytes memory performData_){
         if(s_fundingTarget.balance < MIN_BALANCE){
             upkeepNeeded_ = true;
             performData_ = abi.encode(s_fundingTarget);
