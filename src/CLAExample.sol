@@ -123,6 +123,7 @@ contract CLAExample is AutomationCompatibleInterface, Ownable {
 
         emit CLAExample_FundsWithdrawn(_amount, _receiver);
 
+        // aderyn-fp-next-line(unsafe-erc20-operation)
         _receiver.transfer(_amount);
     }
 

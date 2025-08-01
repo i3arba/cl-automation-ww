@@ -1,0 +1,27 @@
+{
+  "out/CLAExample.sol/CLAExample.json": {
+    "functions": [
+      {
+        "signature": "performUpkeep(bytes)",
+        "actor": "admin",
+        "mode": "fail"
+      },
+      {
+        "signature": "setForwarderAddress(address)",
+        "actor": "admin",
+        "mode": "fail"
+      },
+      {
+        "signature": "setFundingTarget(address)",
+        "actor": "admin",
+        "mode": "fail"
+      },
+      {
+        "signature": "withdraw(uint256,address)",
+        "actor": "admin",
+        "mode": "fail"
+      }
+    ],
+    "separated": false
+  }
+}
