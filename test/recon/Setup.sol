@@ -18,7 +18,6 @@ import "src/CLAExample.sol";
 abstract contract Setup is BaseSetup, ActorManager, AssetManager, Utils {
     CLAExample cla;
     address constant TARGET = address(777);
-    address constant FORWARDER = address(888);
     
     /// === Setup === ///
     /// This contains all calls to be performed in the tester constructor, both for Echidna and Foundry
@@ -30,7 +29,8 @@ abstract contract Setup is BaseSetup, ActorManager, AssetManager, Utils {
 
         vm.deal(address(cla), type(uint256).max);
 
-        cla.setForwarderAddress(FORWARDER);
+        cla.setForwarderAddress(address(this));
+        cla.setFundingTarget(TARGET);
     }
 
     /// === MODIFIERS === ///

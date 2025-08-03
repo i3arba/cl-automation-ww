@@ -19,10 +19,8 @@ abstract contract BeforeAfter is Setup {
     }
 
     function __before() internal {
-
     }
 
     function __after() internal {
-
     }
 }

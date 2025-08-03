@@ -29,9 +29,9 @@ contract CLAExample is AutomationCompatibleInterface, Ownable {
     uint64 constant AMOUNT_TO_TRANSFER = 1*10**17;
 
     ///@notice storage variable to store the Chainlink's forwarder address
-    address internal s_forwarderAddress;
+    address public s_forwarderAddress;
     ///@notice storage variable to store the address to be funded
-    address internal s_fundingTarget;
+    address public s_fundingTarget;
 
     /*///////////////////////////////////
                 Events
@@ -52,7 +52,7 @@ contract CLAExample is AutomationCompatibleInterface, Ownable {
     ///////////////////////////////////*/
     ///@notice error emitted when an invalid address is used
     error CLAExample_InvalidAddress(address newAddress);
-    ///@notice error emitted when an unallowed address tries to perform upkeep
+    ///@notice error emitted when a not allowed address tries to perform upkeep
     error CLAExample_OnlyForwarder();
     ///@notice error emitted when the funding process fails
     error CLAExample_TopUpFailed(bytes data);
@@ -60,6 +60,7 @@ contract CLAExample is AutomationCompatibleInterface, Ownable {
     /*///////////////////////////////////
                 Modifiers
     ///////////////////////////////////*/
+    // aderyn-ignore-next-line(modifier-used-only-once)
     modifier onlyForwarder() {
         if (msg.sender != s_forwarderAddress) {
             revert CLAExample_OnlyForwarder();
